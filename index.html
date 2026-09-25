@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Mock Test</title>
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --bg-color: #f3f4f6;
+            --card-bg: #ffffff;
+            --text-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            width: 100%;
+            max-width: 600px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .timer {
+            background-color: #fee2e2;
+            color: #dc2626;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .question-box {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .options-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+
+        .option-item {
+            background-color: #f9fafb;
+            border: 2px solid #e5e7eb;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .option-item:hover {
+            background-color: #e0e7ff;
+            border-color: var(--primary-color);
+        }
+
+        .option-item.selected {
+            background-color: #e0e7ff;
+            border-color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #4338ca;
+        }
+
+        .result-box {
+            text-align: center;
+            display: none;
+        }
+
+        .result-box h2 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .score {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Test Screen -->
+        <div id="quiz-screen">
+            <div class="header">
+                <span id="question-count">Question 1 of 5</span>
+                <div class="timer" id="time-left">Time: 02:00</div>
+            </div>
+
+            <div class="question-box" id="question-text">
+                Question text goes here?
+            </div>
+
+            <ul class="options-list" id="options-container">
+                <!-- Options will load dynamically via JS -->
+            </ul>
+
+            <button class="btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
+        </div>
+
+        <!-- Result Screen -->
+        <div class="result-box" id="result-screen">
+            <h2>Mock Test Completed! 🎉</h2>
+            <p>Your Final Score is:</p>
+            <div class="score" id="score-display">0 / 5</div>
+            <button class="btn" onclick="restartQuiz()">Retake Test</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock Test Questions Data
+        const questions = [
+            {
+                question: "HTML ka poora naam kya hai?",
+                options: [
+                    "Hyper Text Markup Language",
+                    "High Tech Modern Language",
+                    "Hyper Transfer Machine Language",
+                    "HyperText Markup Leveler"
+                ],
+                answer: 0
+            },
+            {
+                question: "Inme se kaun si programming language nahi hai?",
+                options: ["Python", "HTML", "Java", "C++"],
+                answer: 1
+            },
+            {
+                question: "CSS ka use kis liye kiya jata hai?",
+                options: [
+                    "Database manage karne ke liye",
+                    "Webpage ko design/styling dene ke liye",
+                    "Logic likhne ke liye",
+                    "Server chalane ke liye"
+                ],
+                answer: 1
+            },
+            {
+                question: "JavaScript kis type ki language hai?",
+                options: ["Hardware Language", "Client-side Scripting Language", "Assembly Language", "Markup Language"],
+                answer: 1
+            },
+            {
+                question: "GitHub kis platform par kaam karta hai?",
+                options: ["Git Version Control", "Windows Registry", "Cloud Storage Only", "Linux Kernel"],
+                answer: 0
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOption = null;
+        let timer;
+        let timeLeft = 120; // 2 minutes timer
+
+        const questionText = document.getElementById("question-text");
+        const optionsContainer = document.getElementById("options-container");
+        const questionCount = document.getElementById("question-count");
+        const nextBtn = document.getElementById("next-btn");
+        const quizScreen = document.getElementById("quiz-screen");
+        const resultScreen = document.getElementById("result-screen");
+        const scoreDisplay = document.getElementById("score-display");
+        const timeLeftDisplay = document.getElementById("time-left");
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            timeLeft = 120;
+            quizScreen.style.display = "block";
+            resultScreen.style.display = "none";
+            startTimer();
+            loadQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(timer);
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    showResult();
+                } else {
+                    let minutes = Math.floor(timeLeft / 60);
+                    let seconds = timeLeft % 60;
+                    timeLeftDisplay.innerText = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                    timeLeft--;
+                }
+            }, 1000);
+        }
+
+        function loadQuestion() {
+            selectedOption = null;
+            let currentQ = questions[currentQuestionIndex];
+            questionCount.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
+            questionText.innerText = currentQ.question;
+            
+            optionsContainer.innerHTML = "";
+            currentQ.options.forEach((opt, index) => {
+                let li = document.createElement("li");
+                li.className = "option-item";
+                li.innerText = opt;
+                li.onclick = () => selectOption(index, li);
+                optionsContainer.appendChild(li);
+            });
+        }
+
+        function selectOption(index, element) {
+            document.querySelectorAll(".option-item").forEach(item => {
+                item.classList.remove("selected");
+            });
+            element.classList.add("selected");
+            selectedOption = index;
+        }
+
+        function nextQuestion() {
+            if (selectedOption === null) {
+                alert("Kripya koi ek option select karein!");
+                return;
+            }
+
+            if (selectedOption === questions[currentQuestionIndex].answer) {
+                score++;
+            }
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                clearInterval(timer);
+                showResult();
+            }
+        }
+
+        function showResult() {
+            quizScreen.style.display = "none";
+            resultScreen.style.display = "block";
+            scoreDisplay.innerText = `${score} / ${questions.length}`;
+        }
+
+        function restartQuiz() {
+            startQuiz();
+        }
+
+        // Initialize test on load
+        startQuiz();
+    </script>
+</body>
+</html>
