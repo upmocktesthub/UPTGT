@@ -1,289 +1,774 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Mock Test</title>
+    <title>UP TGT Mock Test 2026 - Success Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#4338ca', // Indigo 700
+                            dark: '#3730a3',
+                            light: '#6366f1'
+                        },
+                        secondary: {
+                            DEFAULT: '#059669', // Emerald 600
+                            light: '#10b981'
+                        },
+                        accent: {
+                            DEFAULT: '#d97706' // Amber 600
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        hindi: ['Tiro Devanagari Hindi', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #4f46e5;
-            --bg-color: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-color: #1f2937;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: var(--card-bg);
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .timer {
-            background-color: #fee2e2;
-            color: #dc2626;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .question-box {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .options-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 25px 0;
-        }
-
-        .option-item {
-            background-color: #f9fafb;
-            border: 2px solid #e5e7eb;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .option-item:hover {
-            background-color: #e0e7ff;
-            border-color: var(--primary-color);
-        }
-
-        .option-item.selected {
-            background-color: #e0e7ff;
-            border-color: var(--primary-color);
-            font-weight: 500;
-        }
-
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            width: 100%;
-            font-weight: 600;
-            transition: background-color 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #4338ca;
-        }
-
-        .result-box {
-            text-align: center;
-            display: none;
-        }
-
-        .result-box h2 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .score {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
+        .hero-pattern {
+            background-image: radial-gradient(#6366f1 1px, transparent 1px), radial-gradient(#6366f1 1px, #312e81 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-500 selection:text-white">
 
-    <div class="container">
-        <!-- Test Screen -->
-        <div id="quiz-screen">
-            <div class="header">
-                <span id="question-count">Question 1 of 5</span>
-                <div class="timer" id="time-left">Time: 02:00</div>
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-11 h-11 bg-primary text-white rounded-xl flex items-center justify-center shadow-md shadow-indigo-200">
+                        <i class="fa-solid fa-graduation-cap text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold tracking-tight text-slate-900 block leading-tight">UP TGT <span class="text-primary">Success</span></span>
+                        <span class="text-xs text-slate-500 font-medium">तैयारी जीत की</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-8 font-medium text-sm text-slate-600">
+                    <a href="#home" class="text-primary font-semibold transition hover:text-primary">Home</a>
+                    <a href="#tests" class="transition hover:text-primary">Mock Tests</a>
+                    <a href="#syllabus" class="transition hover:text-primary">Syllabus</a>
+                    <a href="#papers" class="transition hover:text-primary">Previous Papers</a>
+                    <a href="#contact" class="transition hover:text-primary">Contact</a>
+                </nav>
+
+                <!-- Auth Buttons -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button onclick="openModal('loginModal')" class="text-slate-700 hover:text-primary font-medium text-sm px-4 py-2 transition">Login</button>
+                    <button onclick="openModal('registerModal')" class="bg-primary hover:bg-primary-dark text-white font-medium text-sm px-5 py-2.5 rounded-xl shadow-md shadow-indigo-100 transition transform hover:-translate-y-0.5">Register Free</button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="menuBtn" class="text-slate-700 hover:text-primary focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
             </div>
-
-            <div class="question-box" id="question-text">
-                Question text goes here?
-            </div>
-
-            <ul class="options-list" id="options-container">
-                <!-- Options will load dynamically via JS -->
-            </ul>
-
-            <button class="btn" id="next-btn" onclick="nextQuestion()">Next Question</button>
         </div>
 
-        <!-- Result Screen -->
-        <div class="result-box" id="result-screen">
-            <h2>Mock Test Completed! 🎉</h2>
-            <p>Your Final Score is:</p>
-            <div class="score" id="score-display">0 / 5</div>
-            <button class="btn" onclick="restartQuiz()">Retake Test</button>
+        <!-- Mobile Menu Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#home" class="block px-3 py-2 rounded-lg text-base font-medium text-primary bg-indigo-50">Home</a>
+            <a href="#tests" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Mock Tests</a>
+            <a href="#syllabus" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Syllabus</a>
+            <a href="#papers" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Previous Papers</a>
+            <a href="#contact" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Contact</a>
+            <div class="pt-4 flex flex-col space-y-2">
+                <button onclick="openModal('loginModal')" class="w-full text-center py-2.5 rounded-xl border border-slate-200 text-slate-700 font-medium">Login</button>
+                <button onclick="openModal('registerModal')" class="w-full text-center py-2.5 rounded-xl bg-primary text-white font-medium shadow-md">Register Free</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="relative bg-gradient-to-br from-indigo-950 via-primary-dark to-indigo-900 text-white overflow-hidden py-20 lg:py-28 hero-pattern">
+        <div class="absolute inset-0 bg-black/30"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20 text-accent font-medium text-xs sm:text-sm">
+                        <i class="fa-solid fa-bullhorn animate-pulse"></i>
+                        <span>UP Secondary Education Services Selection Board (UPSESSB)</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+                        UP TGT Mock Test 2026 <br>
+                        <span class="font-hindi text-accent font-normal italic">अपनी तैयारी को परखें और सफलता सुनिश्चित करें</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 font-light">
+                        Boost your confidence with expert-curated bilingual mock tests, precise exam pattern practice, all India rank tracking, and comprehensive performance analysis.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#tests" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-accent hover:bg-amber-700 text-white font-semibold rounded-xl shadow-xl shadow-amber-600/20 transition transform hover:-translate-y-1">
+                            <span>Start Free Mock Test</span>
+                            <i class="fa-solid fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#syllabus" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl backdrop-blur-md border border-white/20 transition">
+                            <i class="fa-solid fa-book-open mr-2 text-accent"></i>
+                            <span>View Syllabus</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Illustration Card -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="w-full max-w-md bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-6">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-award text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Live Test Series</h4>
+                                    <p class="text-xs text-slate-300">Active Now for 2026 Exam</p>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 text-xs px-2.5 py-1 rounded-full font-medium">100% Free</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-300">Total Enrolled Aspirants</span>
+                                <span class="font-bold text-white">45,200+</span>
+                            </div>
+                            <div class="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+                                <div class="bg-accent h-full w-3/4 rounded-full"></div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 pt-2">
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10 text-center">
+                                    <span class="block text-2xl font-bold text-accent">125</span>
+                                    <span class="text-xs text-slate-300">Questions per Test</span>
+                                </div>
+                                <div class="bg-white/5 p-3 rounded-xl border border-white/10 text-center">
+                                    <span class="block text-2xl font-bold text-secondary-light">500+</span>
+                                    <span class="text-xs text-slate-300">Total Mock Tests</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button onclick="openModal('registerModal')" class="w-full py-3 bg-secondary hover:bg-secondary-light text-white font-medium rounded-xl shadow-lg transition">
+                            Join Free Live Test Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-white border-b border-slate-100 py-8 shadow-sm relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4 border-r last:border-0 border-slate-100">
+                    <div class="text-primary text-3xl font-bold mb-1">500+</div>
+                    <div class="text-slate-500 text-sm font-medium">Total Mock Tests</div>
+                </div>
+                <div class="p-4 border-r last:border-0 border-slate-100">
+                    <div class="text-secondary text-3xl font-bold mb-1">85,000+</div>
+                    <div class="text-slate-500 text-sm font-medium">Active Students</div>
+                </div>
+                <div class="p-4 border-r last:border-0 border-slate-100">
+                    <div class="text-accent text-3xl font-bold mb-1">94%</div>
+                    <div class="text-slate-500 text-sm font-medium">Success Rate</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-indigo-600 text-3xl font-bold mb-1">10,000+</div>
+                    <div class="text-slate-500 text-sm font-medium">Expert Questions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tests" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider bg-indigo-50 px-3.5 py-1 rounded-full border border-indigo-100">Practice Sets</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Subject-wise UP TGT Mock Tests</h2>
+                <p class="text-slate-600 text-base">Select your specialized subject and start testing your preparation level with real-time exam simulation.</p>
+            </div>
+
+            <!-- Subject Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Subject Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-indigo-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-primary text-white rounded-xl flex items-center justify-center shadow-md shadow-indigo-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-book-bookmark text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">Hindi (हिंदी)</h3>
+                                    <span class="text-xs text-primary font-medium">TGT Sahitya & Vyakaran</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">Bilingual</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Covers Rigorous questions on Hindi Literature, Kavya Shastra, Grammar, and Authors.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('Hindi')" class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl shadow-md shadow-indigo-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-emerald-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-secondary text-white rounded-xl flex items-center justify-center shadow-md shadow-emerald-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-calculator text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">Mathematics (गणित)</h3>
+                                    <span class="text-xs text-secondary font-medium">Algebra, Calculus, Trigo</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">Bilingual</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Advanced level mathematical problems with shortcut methods and detailed explanations.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('Mathematics')" class="w-full py-3 bg-secondary hover:bg-secondary-light text-white font-medium rounded-xl shadow-md shadow-emerald-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-amber-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-accent text-white rounded-xl flex items-center justify-center shadow-md shadow-amber-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-atom text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">Science (विज्ञान)</h3>
+                                    <span class="text-xs text-accent font-medium">Physics & Chemistry</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">Bilingual</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Physics and Chemistry concepts, numericals, and factual test series for TGT aspirants.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('Science')" class="w-full py-3 bg-accent hover:bg-amber-700 text-white font-medium rounded-xl shadow-md shadow-amber-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Card 4 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-purple-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center shadow-md shadow-purple-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-globe text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">Social Science (सामाजिक विज्ञान)</h3>
+                                    <span class="text-xs text-purple-600 font-medium">History, Civics, Geo, Eco</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">Bilingual</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Comprehensive tests combining Indian history, polity, geography, and economics.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('Social Science')" class="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-xl shadow-md shadow-purple-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Card 5 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-blue-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-md shadow-blue-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-language text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">English (अंग्रेजी)</h3>
+                                    <span class="text-xs text-blue-600 font-medium">Literature & Grammar</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">English</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Shakespeare, Wordsworth, Milton prose/poetry, and rigorous English grammar exercises.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('English')" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl shadow-md shadow-blue-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Subject Card 6 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="p-6 bg-gradient-to-r from-rose-50 to-slate-50 border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-12 h-12 bg-rose-600 text-white rounded-xl flex items-center justify-center shadow-md shadow-rose-100 group-hover:scale-110 transition">
+                                    <i class="fa-solid fa-feather text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900">Sanskrit (संस्कृत)</h3>
+                                    <span class="text-xs text-rose-600 font-medium">Sahitya & Vyakaran</span>
+                                </div>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-600 text-xs px-2.5 py-1 rounded-full font-semibold border border-emerald-100">Sanskrit/Hindi</span>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <p class="text-slate-600 text-sm">Mahakavya, Sanskrit Grammar rules (Laghu Siddhanta Kaumudi), and literature.</p>
+                            <div class="grid grid-cols-3 gap-2 text-center pt-2">
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">125</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Questions</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">120 Min</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Duration</span>
+                                </div>
+                                <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                                    <span class="block font-bold text-slate-800 text-sm">500 Marks</span>
+                                    <span class="text-[10px] text-slate-500 uppercase">Total Marks</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <button onclick="openTestModal('Sanskrit')" class="w-full py-3 bg-rose-600 hover:bg-rose-700 text-white font-medium rounded-xl shadow-md shadow-rose-100 transition flex items-center justify-center space-x-2">
+                            <span>Take Test Now</span>
+                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-secondary font-semibold text-sm uppercase tracking-wider bg-emerald-50 px-3.5 py-1 rounded-full border border-emerald-100">Why Choose Us</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Designed for UP TGT Aspirants</h2>
+                <p class="text-slate-600 text-base">We provide unmatched testing technology and high-yield content explicitly tailored to UPSESSB guidelines.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-8 rounded-2xl bg-slate-50 hover:bg-indigo-50/50 border border-slate-100 transition duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-indigo-100 text-primary rounded-2xl flex items-center justify-center text-2xl group-hover:bg-primary group-hover:text-white transition shadow-sm">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Latest Syllabus Based</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">All tests are fully updated as per the latest UPSESSB UP TGT notification and exam pattern.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="p-8 rounded-2xl bg-slate-50 hover:bg-emerald-50/50 border border-slate-100 transition duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-emerald-100 text-secondary rounded-2xl flex items-center justify-center text-2xl group-hover:bg-secondary group-hover:text-white transition shadow-sm">
+                        <i class="fa-solid fa-ranking-star"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">All India Ranking</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Compare your scores with thousands of serious candidates across Uttar Pradesh before the actual exam.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="p-8 rounded-2xl bg-slate-50 hover:bg-amber-50/50 border border-slate-100 transition duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-amber-100 text-accent rounded-2xl flex items-center justify-center text-2xl group-hover:bg-accent group-hover:text-white transition shadow-sm">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Detailed Solutions</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Get step-by-step explanations, shortcut techniques, and conceptual rationales for every question.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="p-8 rounded-2xl bg-slate-50 hover:bg-purple-50/50 border border-slate-100 transition duration-300 space-y-4 group">
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center text-2xl group-hover:bg-purple-600 group-hover:text-white transition shadow-sm">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900">Bilingual Support</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Practice in both Hindi and English languages seamlessly to build absolute clarity and speed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="syllabus" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-accent font-semibold text-sm uppercase tracking-wider bg-white/10 px-3.5 py-1 rounded-full border border-white/20">Resources</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">UP TGT Syllabus & Previous Year Papers</h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Download official examination guidelines, subject-wise syllabus PDFs, and solved papers from previous years to align your study strategy with examiner expectations.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="w-10 h-10 rounded-lg bg-primary/20 text-indigo-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-file-pdf text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">UP TGT Official Syllabus 2026 (PDF)</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">Includes detailed topic-wise weightage for all subjects.</p>
+                            </div>
+                            <button onclick="alertBox('Downloading syllabus PDF...')" class="ml-auto bg-primary hover:bg-primary-dark text-white px-3 py-1.5 rounded-lg text-xs font-medium">Download</button>
+                        </div>
+                        <div class="flex items-start space-x-4 bg-white/5 p-4 rounded-xl border border-white/10">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-file-arrow-down text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white">UP TGT Solved Papers (2021 & 2022)</h4>
+                                <p class="text-xs text-slate-400 mt-0.5">Complete question bank with expert explanations.</p>
+                            </div>
+                            <button onclick="alertBox('Downloading previous year papers...')" class="ml-auto bg-secondary hover:bg-secondary-light text-white px-3 py-1.5 rounded-lg text-xs font-medium">Download</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Callout Banner inside Syllabus -->
+                <div class="bg-gradient-to-br from-primary to-indigo-900 rounded-3xl p-8 sm:p-10 border border-white/10 shadow-2xl relative overflow-hidden">
+                    <div class="absolute -right-10 -bottom-10 text-white/5 text-9k font-bold pointer-events-none">
+                        <i class="fa-solid fa-award"></i>
+                    </div>
+                    <div class="relative z-10 space-y-6">
+                        <h3 class="text-2xl sm:text-3xl font-bold">Ready to Crack UP TGT Exam?</h3>
+                        <p class="text-indigo-200 text-sm">Join thousands of successful teachers who prepared with our platform and secured jobs in UP Government Secondary Schools.</p>
+                        <div class="pt-2">
+                            <button onclick="openModal('registerModal')" class="px-8 py-3.5 bg-accent hover:bg-amber-700 text-white font-semibold rounded-xl shadow-lg transition">
+                                Create Free Account Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+                <!-- Col 1: Brand -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-primary text-white rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-graduation-cap text-lg"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white tracking-tight">UP TGT <span class="text-primary">Success Portal</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+                        The ultimate dedicated online testing portal for Uttar Pradesh Trained Graduate Teacher (UP TGT) recruitment examination aspirants. Practice, analyze, and succeed.
+                    </p>
+                    <div class="flex space-x-4 text-slate-300">
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-telegram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-xl bg-white/5 hover:bg-primary hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Quick Links -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">Mock Tests</a></li>
+                        <li><a href="#syllabus" class="hover:text-white transition">Syllabus 2026</a></li>
+                        <li><a href="#papers" class="hover:text-white transition">Previous Year Papers</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Subjects -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Top Subjects</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#tests" class="hover:text-white transition">Hindi Literature</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">Mathematics</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">Science & Physics</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">Social Science</a></li>
+                        <li><a href="#tests" class="hover:text-white transition">English & Sanskrit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact -->
+                <div>
+                    <h4 class="text-white font-semibold text-sm uppercase tracking-wider mb-4">Support</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><i class="fa-solid fa-envelope mr-2 text-primary"></i> support@uptgtsuccess.in</li>
+                        <li><i class="fa-solid fa-phone mr-2 text-primary"></i> +91 (522) 234-5678</li>
+                        <li><i class="fa-solid fa-location-dot mr-2 text-primary"></i> Hazratganj, Lucknow, UP</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Disclaimer & Copyright -->
+            <div class="border-t border-slate-900 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 space-y-4 md:space-y-0">
+                <p>© 2026 UP TGT Success Portal. All rights reserved. Designed for educational guidance.</p>
+                <p class="text-center md:text-right max-w-md">
+                    Disclaimer: This portal is an independent preparation guide for competitive examinations and is not officially affiliated with UPSESSB.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative space-y-6">
+            <button onclick="closeModal('loginModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="space-y-2 text-center">
+                <div class="w-12 h-12 bg-indigo-50 text-primary rounded-2xl flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">Welcome Back</h3>
+                <p class="text-slate-500 text-sm">Login to your UP TGT portal account</p>
+            </div>
+            <form onsubmit="handleAuth(event, 'Login successful!')" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="aspirant@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Password</label>
+                    <input type="password" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary text-sm" placeholder="••••••••">
+                </div>
+                <button type="submit" class="w-full py-3 bg-primary hover:bg-primary-dark text-white font-medium rounded-xl shadow-lg shadow-indigo-100 transition">
+                    Login to Portal
+                </button>
+            </form>
         </div>
     </div>
 
+    <!-- Register Modal -->
+    <div id="registerModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative space-y-6">
+            <button onclick="closeModal('registerModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="space-y-2 text-center">
+                <div class="w-12 h-12 bg-emerald-50 text-secondary rounded-2xl flex items-center justify-center mx-auto text-xl">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900">Create Free Account</h3>
+                <p class="text-slate-500 text-sm">Start your UP TGT preparation today</p>
+            </div>
+            <form onsubmit="handleAuth(event, 'Registration successful! Welcome to UP TGT Success.')" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Full Name</label>
+                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary text-sm" placeholder="Rahul Kumar">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Email Address</label>
+                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary text-sm" placeholder="aspirant@example.com">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Select Subject</label>
+                    <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-secondary text-sm bg-white">
+                        <option>Hindi (हिंदी)</option>
+                        <option>Mathematics (गणित)</option>
+                        <option>Science (विज्ञान)</option>
+                        <option>Social Science (सामाजिक विज्ञान)</option>
+                        <option>English (अंग्रेजी)</option>
+                        <option>Sanskrit (संस्कृत)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-3 bg-secondary hover:bg-secondary-light text-white font-medium rounded-xl shadow-lg shadow-emerald-100 transition">
+                    Register Free
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Test Start Confirmation Modal -->
+    <div id="testModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm hidden">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full mx-4 shadow-2xl relative space-y-6 text-center">
+            <button onclick="closeModal('testModal')" class="absolute top-6 right-6 text-slate-400 hover:text-slate-600">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="w-16 h-16 bg-indigo-50 text-primary rounded-2xl flex items-center justify-center mx-auto text-2xl">
+                <i class="fa-solid fa-stopwatch"></i>
+            </div>
+            <div class="space-y-2">
+                <h3 id="modalSubjectTitle" class="text-2xl font-bold text-slate-900">UP TGT Mock Test</h3>
+                <p class="text-slate-600 text-sm">You are about to start the live mock test with 125 questions and 120 minutes time limit. Ensure you have stable internet.</p>
+            </div>
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100 text-left space-y-2 text-xs text-slate-600">
+                <div class="flex justify-between"><span>Total Questions:</span> <span class="font-bold text-slate-900">125 MCQs</span></div>
+                <div class="flex justify-between"><span>Marking Scheme:</span> <span class="font-bold text-slate-900">+4 Marks / Correct</span></div>
+                <div class="flex justify-between"><span>Language:</span> <span class="font-bold text-slate-900">Hindi & English</span></div>
+            </div>
+            <button onclick="startMockTest()" class="w-full py-3.5 bg-primary hover:bg-primary-dark text-white font-semibold rounded-xl shadow-lg transition">
+                Start Test Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Custom Alert Notification Box -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-24 opacity-0 transition-all duration-300 bg-slate-900 text-white px-6 py-3.5 rounded-2xl shadow-2xl flex items-center space-x-3 text-sm">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-lg"></i>
+        <span id="toastMessage">Notification message here</span>
+    </div>
+
     <script>
-        // Mock Test Questions Data
-        const questions = [
-            {
-                question: "HTML ka poora naam kya hai?",
-                options: [
-                    "Hyper Text Markup Language",
-                    "High Tech Modern Language",
-                    "Hyper Transfer Machine Language",
-                    "HyperText Markup Leveler"
-                ],
-                answer: 0
-            },
-            {
-                question: "Inme se kaun si programming language nahi hai?",
-                options: ["Python", "HTML", "Java", "C++"],
-                answer: 1
-            },
-            {
-                question: "CSS ka use kis liye kiya jata hai?",
-                options: [
-                    "Database manage karne ke liye",
-                    "Webpage ko design/styling dene ke liye",
-                    "Logic likhne ke liye",
-                    "Server chalane ke liye"
-                ],
-                answer: 1
-            },
-            {
-                question: "JavaScript kis type ki language hai?",
-                options: ["Hardware Language", "Client-side Scripting Language", "Assembly Language", "Markup Language"],
-                answer: 1
-            },
-            {
-                question: "GitHub kis platform par kaam karta hai?",
-                options: ["Git Version Control", "Windows Registry", "Cloud Storage Only", "Linux Kernel"],
-                answer: 0
-            }
-        ];
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
 
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let selectedOption = null;
-        let timer;
-        let timeLeft = 120; // 2 minutes timer
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        const questionText = document.getElementById("question-text");
-        const optionsContainer = document.getElementById("options-container");
-        const questionCount = document.getElementById("question-count");
-        const nextBtn = document.getElementById("next-btn");
-        const quizScreen = document.getElementById("quiz-screen");
-        const resultScreen = document.getElementById("result-screen");
-        const scoreDisplay = document.getElementById("score-display");
-        const timeLeftDisplay = document.getElementById("time-left");
-
-        function startQuiz() {
-            currentQuestionIndex = 0;
-            score = 0;
-            timeLeft = 120;
-            quizScreen.style.display = "block";
-            resultScreen.style.display = "none";
-            startTimer();
-            loadQuestion();
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
         }
 
-        function startTimer() {
-            clearInterval(timer);
-            timer = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timer);
-                    showResult();
-                } else {
-                    let minutes = Math.floor(timeLeft / 60);
-                    let seconds = timeLeft % 60;
-                    timeLeftDisplay.innerText = `Time: ${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-                    timeLeft--;
-                }
-            }, 1000);
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
 
-        function loadQuestion() {
-            selectedOption = null;
-            let currentQ = questions[currentQuestionIndex];
-            questionCount.innerText = `Question ${currentQuestionIndex + 1} of ${questions.length}`;
-            questionText.innerText = currentQ.question;
-            
-            optionsContainer.innerHTML = "";
-            currentQ.options.forEach((opt, index) => {
-                let li = document.createElement("li");
-                li.className = "option-item";
-                li.innerText = opt;
-                li.onclick = () => selectOption(index, li);
-                optionsContainer.appendChild(li);
-            });
+        // Subject Test Modal trigger
+        let currentSubject = '';
+        function openTestModal(subject) {
+            currentSubject = subject;
+            document.getElementById('modalSubjectTitle').innerText = `UP TGT ${subject} Mock Test`;
+            openModal('testModal');
         }
 
-        function selectOption(index, element) {
-            document.querySelectorAll(".option-item").forEach(item => {
-                item.classList.remove("selected");
-            });
-            element.classList.add("selected");
-            selectedOption = index;
+        function startMockTest() {
+            closeModal('testModal');
+            alertBox(`Initializing ${currentSubject} Mock Test environment... Good Luck!`);
         }
 
-        function nextQuestion() {
-            if (selectedOption === null) {
-                alert("Kripya koi ek option select karein!");
-                return;
-            }
-
-            if (selectedOption === questions[currentQuestionIndex].answer) {
-                score++;
-            }
-
-            currentQuestionIndex++;
-
-            if (currentQuestionIndex < questions.length) {
-                loadQuestion();
-            } else {
-                clearInterval(timer);
-                showResult();
-            }
+        // Authentication form handler
+        function handleAuth(e, message) {
+            e.preventDefault();
+            closeModal('loginModal');
+            closeModal('registerModal');
+            alertBox(message);
         }
 
-        function showResult() {
-            quizScreen.style.display = "none";
-            resultScreen.style.display = "block";
-            scoreDisplay.innerText = `${score} / ${questions.length}`;
+        // Custom Toast Box (avoiding alert())
+        function alertBox(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            toastMsg.innerText = message;
+            toast.classList.remove('translate-y-24', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 3500);
         }
-
-        function restartQuiz() {
-            startQuiz();
-        }
-
-        // Initialize test on load
-        startQuiz();
     </script>
 </body>
 </html>
